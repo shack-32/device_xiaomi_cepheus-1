@@ -1,0 +1,84 @@
+name: Build via SSH
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a screen
+        uses: garygrossgarten/github-action-ssh@v0.5.0
+        with:
+          command: zsh ~/screen.sh
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWD }}
+
+      - name: Preparing...
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: '15s'
+
+      - name: Sync
+        uses: garygrossgarten/github-action-ssh@v0.5.0
+        with:
+          command: zsh ~/sync.sh
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWD }}
+
+      - name: Preparing...
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: '15s'
+
+      - name: Clean
+        uses: garygrossgarten/github-action-ssh@v0.5.0
+        with:
+          command: zsh ~/clean.sh
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWD }}
+
+      - name: Preparing...
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: '15s'
+
+      - name: Build
+        uses: garygrossgarten/github-action-ssh@v0.5.0
+        with:
+          command: zsh ~/build.sh
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWD }}
+
+      - name: Preparing...
+        uses: juliangruber/sleep-action@v1
+        with:
+          time: '15s'
+
+      - name: Copy file
+        uses: alinz/ssh-scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          user: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          ssh_before: |
+            ls ./RROS* | xargs rm -rf
+          scp: |
+            evasi0n@13.77.74.221:/Android/rr/out/target/product/cepheus/RROS* ./
+
+      - name: Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: "latest"
+          title: "Latest Auto Build"
+          files: |
+            ./RROS*
+
+      - name: Remove assest file
+        run: ls ./RROS* | xargs rm -rf
