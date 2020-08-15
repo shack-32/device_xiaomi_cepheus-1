@@ -1,5 +1,7 @@
 Copyright (C) 2020 DerpFest
 
+Copyright (C) 2020 SyberiaProject
+
 Device configuration for Xiaomi Mi 9
 =========================================
 
