@@ -27,6 +27,9 @@ $(call inherit-product, vendor/syberia/common.mk)
 #Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1080
 
+# Inherit PixelGApps
+$(call inherit-product-if-exists, vendor/gapps/config.mk)
+
 # Device identifier
 PRODUCT_NAME := syberia_cepheus
 PRODUCT_DEVICE := cepheus
@@ -35,6 +38,11 @@ PRODUCT_MODEL := Mi 9
 PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+# GApps
+TARGET_GAPPS_ARCH := arm64
+IS_PHONE := true
+TARGET_INCLUDE_STOCK_ARCORE := true
 
 # Inherit from custom vendor
 $(call inherit-product, vendor/miuicamera/common/common-vendor.mk)
