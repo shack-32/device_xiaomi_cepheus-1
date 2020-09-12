@@ -70,6 +70,12 @@ function blob_fixup() {
     lib64/libfm-hci.so)
         patchelf --remove-needed "android.hidl.base@1.0.so" "${2}"
         ;;
+    vendor/lib64/libsettings.so)
+        patchelf --replace-needed "libprotobuf-cpp-full.so" "libprotobuf-cpp-full-v29.so" "${2}"
+        ;;
+    vendor/lib64/libwvhidl.so)
+        patchelf --replace-needed "libprotobuf-cpp-lite.so" "libprotobuf-cpp-lite-v29.so" "${2}"
+        ;;
     esac
 }
 
