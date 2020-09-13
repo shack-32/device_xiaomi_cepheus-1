@@ -1,6 +1,6 @@
 Copyright &copy; 2020 DerpFest
 
-Copyright &copy; 2020 ResurrectionRemix
+Copyright &copy; 2020 LineageOS
 
 Device configuration for Xiaomi Mi 9
 =========================================

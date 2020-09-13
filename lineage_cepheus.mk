@@ -21,30 +21,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from cepheus device
 $(call inherit-product, device/xiaomi/cepheus/device.mk)
 
-# Inherit some common RR stuff.
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 2340
-TARGET_SCREEN_WIDTH := 1080
+# Inherit some common lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Device identifier
-PRODUCT_NAME := rr_cepheus
+PRODUCT_NAME := lineage_cepheus
 PRODUCT_DEVICE := cepheus
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Mi 9
 PRODUCT_MANUFACTURER := Xiaomi
-
-PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 # FaceUnlock
 TARGET_FACE_UNLOCK_SUPPORTED := true
 
 # FOD
 TARGET_HAS_FOD := true
-
-# Dev certificate
-PRODUCT_DEFAULT_DEV_CERTIFICATE:= build/target/product/security/devkey
 
 # Inherit from custom vendor
 $(call inherit-product, vendor/miuicamera/common/common-vendor.mk)
