@@ -1,6 +1,6 @@
 Copyright &copy; 2020 DerpFest
 
-Copyright &copy; 2020 LineageOS
+Copyright &copy; 2020 Project Fluid
 
 Device configuration for Xiaomi Mi 9
 =========================================
