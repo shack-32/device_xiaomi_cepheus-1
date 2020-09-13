@@ -21,21 +21,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from cepheus device
 $(call inherit-product, device/xiaomi/cepheus/device.mk)
 
-# Inherit some common lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common Fluid stuff.
+$(call inherit-product, vendor/revengeos/config/common.mk)
+
+# Boot animation
+TARGET_BOOT_ANIMATION_RES := 1080
 
 # Device identifier
-PRODUCT_NAME := lineage_cepheus
+PRODUCT_NAME := revengeos_cepheus
 PRODUCT_DEVICE := cepheus
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Mi 9
 PRODUCT_MANUFACTURER := Xiaomi
-
-# FaceUnlock
-TARGET_FACE_UNLOCK_SUPPORTED := true
-
-# FOD
-TARGET_HAS_FOD := true
 
 # Include firmware
 $(call inherit-product, vendor/xiaomi/firmware/cepheus/firmware.mk)
